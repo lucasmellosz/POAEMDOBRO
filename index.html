@@ -80,42 +80,43 @@
 
   <script>
     let lista = [...new Set([
-      "336 Hamburgueria", "4Beer", "A Braba Real", "A Casa Brasileira", "Açaí da Barra", "Agridoce Café",
-      "Ajeum Panqueca", "Alívio Bar", "Amira Shawarma", "Amorim", "Amuur", "Angelini", "Applebee’s Grill & Bar",
-      "Armazém POA", "Armazén Box 18", "Atlanta Bar", "Atelier de Massas", "Avo", "Banca do Açaí", "Bar Lider",
-      "Barbarella Bakery", "Barranquinho", "Beatnik", "Beco 24", "Bib’s", "Bibah", "Bierkeller", "Bistrô do Mercado",
-      "Bisou", "Boom Sabor que Faz Bem", "Boxfim Xis", "Brizza Forneria", "Brita Bar", "Brioche e Gelato",
-      "Buena Pizza Social Club", "Bullé Café & Armazén", "Cacau Show", "Café Angélica", "Café Cultura",
-      "Café do Bem", "Café do Mercado", "Café Imperador", "Café Mal Assombrado", "Cantina Toscana",
-      "Casa do Vale", "Casa Mica", "Casa Revoa", "Castellani Padaria", "CauCakes", "Cavanhas", "Céu Zona Sul",
-      "Charlie Confeitaria", "Chatô Pizzaria", "Chalé da Praça XV", "Ciao Slice Shop", "Coccaderia.Co",
-      "Comfy Pizza", "Confeitaria Barcelona", "Confeitaria Dona Inês", "Da Vó", "Dale Burger", "Delta Brick",
-      "Di Toni Pasta i Basta", "Don Francesco Pastel", "Don Zarichta", "Doralice", "D’juca Confeitaria",
-      "El Aguante Bar", "Encouraço Bu=kin", "Entrecot & cia", "Famiglia Facin", "Fervo Bar", "Fold NYC Style",
-      "Fogo", "Freddo", "Fuga Bar", "Gelato Borelli", "Giallo Sanduicheria", "Ginkgo", "Grazie Mille",
-      "Griffe Patisserie", "Green Station", "Guaviare", "Hard Rock", "Horneria", "Hora do Pastel",
-      "Imperial", "Inconfundível Burguer", "Jardim São Geraldo", "Johnny e Julie", "Juro de Dedinho",
-      "Konceito Lounge", "LaChiviteria", "Lancheria Luz", "Legado Sakaes", "Levante", "Libereco 32",
-      "Libertário", "L’único", "Lola CCMQ", "Los Ferreros", "Los Pibes Burguers e Xis", "Luc Bistrô",
-      "Madame Tetu", "Mais Café Bistrô e Eventos", "Mais1 Café", "Mark Hamburgueria", "Marchy Armazén e Bistrô",
-      "Mayô", "McCafé", "McDonald’s", "McDonald’s (último)", "Med Gastro Giardino", "Mercado Brasco",
-      "Migra", "Milk Moo", "Mima Focacceria", "Moishes Deli", "Molt Be", "Monte Líbano", "Moa Cafeteria",
-      "Mouros Dog", "Mr. Chau", "Mulligan", "Nanica", "Niki Lanches", "Nina Café da Casa", "O’Pasta Tra[oria",
-      "O’Sullivans Irish Pub", "Oh Bruder", "Olga Raízes", "Onze Bar", "Osso Parrilla Bar", "Osteria del Mercato",
-      "Parrilla Hecho a Mano", "Paraíso Bowls", "Pampa", "Pampa Burguer", "Paparico Taqueria", "Paddock & Co",
-      "Patio Barcelos", "Petiskeira", "Pipoca de Ipanema", "Pito Bar e Cozinha", "Platinum Sushi (Yakisoba)",
-      "Poa Café e Armazén", "Poa Parrilla", "Ponto Zero Bar e Cozinha", "Poplab", "Porto Burger",
-      "Quincho Parrilla y Bar", "Quintanilha", "Rancho 141", "Raw Restaurante", "Real Fucking Burger",
-      "Refúgio Açaí", "Restaurante Figueiras", "Restaurante Marcos", "Restaurante Midbar", "Restaurante Naval",
-      "Restaurante Origens", "Rincón 74", "Rodízio Burguer Poa", "Roister do Barra", "Royal Trudel", "Ruta Asado y Bar",
-      "Salvador Gravataí", "Salvador Pontal", "Sando", "Santi Pizzeria Napoletana", "Santino Gelateria",
-      "Santo Antônio", "Savanna", "Shakespeare", "Sirène", "Soc Ice Cream",
-      "Soberano", "Spoleto", "Spoiler", "Squisito Fatta a Mano", "T.T Burguer", "Tartoni", "Terra do Churrasco",
-      "The Raven", "Tio Burguers", "Todo Cambia", "Todo Vene", "Trigo Pizzaria", "Trianon Bauru", "Tú Bar",
-      "Um Bar & Cozinha", "Up Food Art", "Uai Why", "Ventralis BBQ e Burger", "Veríssimo Café",
-      "Via Pastel", "Village Grill", "Vila Finamor", "Vincenzo Spagheteria", "Vivenda Portuguesa", "Vulcano Burguers",
-      "Yami Café", "Zuca"
-    ])].sort();
+      // Lista em ordem alfabética
+      "336 Hamburgueria", "A Braba Real", "A Casa Brasileira", "Açaí da Barra", "Agridoce Café",
+      "Alívio Bar", "Amira Shawarma", "Amorim", "Amuur", "Angelini", "Applebee’s Grill & Bar",
+      "Armazém POA", "Armazén Box 18", "Atelier de Massas", "Atlanta Bar", "Avo", "Banca do Açaí",
+      "Bar Lider", "Barbarella Bakery", "Barranquinho", "Beatnik", "Beco 24", "Bib’s", "Bibah",
+      "Bierkeller", "Bistrô do Mercado", "Bisou", "Boom Sabor que Faz Bem", "Boxfim Xis", "Brizza Forneria",
+      "Brita Bar", "Brioche e Gelato", "Buena Pizza Social Club", "Bullé Café & Armazén", "Café Angélica",
+      "Café Cultura", "Café do Bem", "Café do Mercado", "Café Imperador", "Café Mal Assombrado",
+      "Cachorro do Bonfa", "Cantina Toscana", "Casa Mica", "Casa Revoa", "Casa do Vale", "Castellani Padaria",
+      "Cavanhas", "Caucakes", "Cavanhas", "Céu Zona Sul", "Charlie Confeitaria", "Chatô Pizzaria",
+      "Chalé da Praça XV", "Ciao Slice Shop", "Coccaderia.Co", "Comfy Pizza", "Confeitaria Barcelona",
+      "Confeitaria Dona Inês", "D’juca Confeitaria", "Da Vó", "Dale Burger", "Delta Brick", "De Rua",
+      "Di Toni Pasta i Basta", "Don Francesco Pastel", "Don Zarichta", "Doralice", "El Aguante Bar",
+      "Encouraço Bu=kin", "Entrecot & cia", "Famiglia Facin", "Fervo Bar", "Fold NYC Style", "Fogo",
+      "Freda", "Gelato Borelli", "Giallo Sanduicheria", "Ginkgo", "Grazie Mille", "Green Station",
+      "Griffe Patisserie", "Guaviare", "Hard Rock", "Hora do Pastel", "Horneria", "Imperial",
+      "Inconfundível Burguer", "Jardim São Geraldo", "Johnny e Julie", "Juro de Dedinho", "Konceito Lounge",
+      "LaChiviteria", "Lancheria Luz", "Legado Sakaes", "Levante", "Libereco 32", "Libertário", "Lola CCMQ",
+      "Los Ferreros", "Los Pibes Burguers e Xis", "Luc Bistrô", "Madame Tetu", "Mark Hamburgueria",
+      "Marchy Armazén e Bistrô", "Mayô", "McCafé", "McDonald’s", "McDonald’s (último)", "Med Gastro Giardino",
+      "Mercado Brasco", "Migra", "Milk Moo", "Mima Focacceria", "Moa Cafeteria", "Molt Be", "Monte Líbano",
+      "Moishes Deli", "Mouros Dog", "Mr. Chau", "Mulligan", "Nanica", "Niki Lanches", "Nina Café da Casa",
+      "O’Pasta Tra[oria", "O’Sullivans Irish Pub", "Oh Bruder", "Olga Raízes", "Onze Bar", "Osso Parrilla Bar",
+      "Osteria del Mercato", "Paraíso Bowls", "Parrilla Hecho a Mano", "Paparico Taqueria", "Pampa",
+      "Pampa Burguer", "Patio Barcelos", "Paddock & Co", "Patio Barcelos", "Petiskeira", "Pipoca de Ipanema",
+      "Pito Bar e Cozinha", "Platinum Sushi (Yakisoba)", "Poa Café e Armazén", "Poa Parrilla", "Ponto Zero Bar e Cozinha",
+      "Poplab", "Porto Burger", "Quincho Parrilla y Bar", "Quintanilha", "Rancho 141", "Raw Restaurante",
+      "Real Fucking Burger", "Refúgio Açaí", "Restaurante Figueiras", "Restaurante Marcos", "Restaurante Midbar",
+      "Restaurante Naval", "Restaurante Origens", "Rincón 74", "Roister do Barra", "Royal Trudel", "Ruta Asado y Bar",
+      "Sabor de Luna", "Salvador Gravataí", "Salvador Pontal", "Sando", "Santi Pizzeria Napoletana",
+      "Santino Gelateria", "Savanna", "Shakespeare", "Sirène", "Soc Ice Cream", "Soberano", "Sobrinho Hamburgers",
+      "Spoiler", "Spoleto", "Squisito Fatta a Mano", "T.T Burguer", "Tartoni", "Terra do Churrasco",
+      "The Raven", "Todo Cambia", "Todo Vene", "Tio Burguers", "Trigo Pizzaria", "Trianon Bauru",
+      "Tú Bar", "Um Bar & Cozinha", "Up Food Art", "Uai Why", "Veríssimo Café", "Via Pastel",
+      "Ventralis BBQ e Burger", "Village Grill", "Vila Finamor", "Vincenzo Spagheteria", "Vivenda Portuguesa",
+      "Vulcano Burguers", "Yami Café", "Zuca"
+    ])];
 
     let sorteados = JSON.parse(localStorage.getItem("sorteados")) || [];
     let visitados = JSON.parse(localStorage.getItem("visitados")) || [];
@@ -137,7 +138,8 @@
       const sorteadosNaoVisitados = sorteados.filter(s => !visitados.includes(s.nome)).map(s => s.nome);
       const restantes = lista.filter(r => !visitados.includes(r) && !sorteadosNaoVisitados.includes(r));
 
-      restantes.forEach(item => {
+      // Ordena os "restantes"
+      restantes.sort().forEach(item => {
         const li = document.createElement("li");
         li.textContent = item;
         ulRestantes.appendChild(li);
