@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Roleta de Restaurantes</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 30px;
+      background-color: #f4f4f4;
+    }
+    #resultado {
+      font-size: 2em;
+      margin: 20px 0;
+      color: #333;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .lista {
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .lista h2 {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .lista ul {
+      padding-left: 20px;
+    }
+    .lista li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍽️POA EM DOBRO 2025🍽️</h1>
+  <button onclick="sortear()">Sortear Restaurante</button>
+  <div id="resultado"></div>
+
+  <div class="container">
+    <div class="lista">
+      <h2>Já Sorteados</h2>
+      <ul id="jaSorteados"></ul>
+    </div>
+    <div class="lista">
+      <h2>Restaurantes Restantes</h2>
+      <ul id="restantes"></ul>
+    </div>
+    <div class="lista">
+      <h2>Visitados</h2>
+      <ul id="visitados"></ul>
+    </div>
+  </div>
+
+  <script>
+    let lista = [...new Set([
+      "Santo Antônio", "Entrecot & cia", "Applebee’s Grill & Bar", "Atelier de Massas", "Petiskeira", "McDonald’s",
+      "Luc Bistrô", "Freddo", "Savanna", "Agridoce Café", "The Raven", "Barbarella Bakery", "Brizza Forneria",
+      "Vivenda Portuguesa", "Sando", "Restaurante Origens", "Cacau Show", "Refúgio Açaí", "Cantina Toscana",
+      "Pampa Burguer", "Roister do Barra", "Don Francesco Pastel", "Poplab", "Amorim", "Imperial",
+      "Legado Sakaes", "Green Station", "Giallo Sanduicheria", "Angelini", "CauCakes", "Pampa", "Gelato Borelli",
+      "Doralice", "Niki Lanches", "Alívio Bar", "Spoiler", "Cavanhas", "Chatô Pizzaria", "Jardim São Geraldo",
+      "Pipoca de Ipanema", "Mouros Dog", "Comfy Pizza", "Fuga Bar", "LaChiviteria", "Zuca", "Rodízio Burguer Poa",
+      "Horneria", "Lancheria Luz", "Mayô", "Boxfim Xis", "Lola CCMQ", "Guaviare", "Chocolate Lugano",
+      "Vincenzo Spagheteria", "Fervo Bar", "Trianon Bauru", "Veríssimo Café", "Casa do Vale",
+      "O’Sullivans Irish Pub", "Atlanta Bar", "Beco 24", "Bistrô do Mercado", "Mark Hamburgueria", "Uai Why",
+      "Fold NYC Style", "Di Toni Pasta i Basta", "McCafé", "Charlie Confeitaria", "336 Hamburgueria",
+      "Restaurante Figueiras", "Paddock & Co", "Famiglia Facin", "Via Pastel", "Soc Ice Cream", "Up Food Art",
+      "Castellani Padaria", "A Braba Real", "Bib’s", "Griffe Patisserie", "Mercado Brasco", "Bar Lider",
+      "Soberano", "Ciao Slice Shop", "Vulcano Burguers", "Tartoni", "Açaí da Barra", "Coccaderia.Co", "Tú Bar",
+      "Los Pibes Burguers e Xis", "Confeitaria Barcelona", "A Casa Brasileira", "Brita Bar", "Todo Vene",
+      "Pito Bar e Cozinha", "Xis Júlio Paris", "Grazie Mille", "Chalé da Praça XV", "Casa Revoa",
+      "Ratskeller Baumbach", "Brz Fruits", "Poa Café e Armazén", "Ruta Asado y Bar", "Shakespeare",
+      "D’juca Confeitaria", "Cachorro do Bonfa", "Rancho 141", "Juro de Dedinho", "Banca do Açaí",
+      "El Aguante Bar", "Inconfundível Burguer", "Migra", "Santi Pizzeria Napoletana", "Beatnik",
+      "Med Gastro Giardino", "Tio Burguers", "Moishes Deli", "Yami Café", "Ventralis BBQ e Burger", "Mato Bar",
+      "Raw Restaurante", "Mr. Chau", "Um Bar & Cozinha", "Encouraço Bu=kin", "Libertário", "Olga Raízes",
+      "Johnny e Julie", "L’único", "Marchy Armazén e Bistrô", "Café Mal Assombrado", "Poa Parrilla",
+      "Libereco 32", "Casa Mica", "Moa Cafeteria", "Bierkeller", "Levante", "Amuur", "Paparico Taqueria",
+      "Café Imperador", "Restaurante Marcos", "4Beer", "Osso Parrilla Bar", "Café do Mercado", "De Rua",
+      "Barranquinho", "Onze Bar", "Xão Resto Bar", "Brioche e Gelato", "Amira Shawarma", "Royal Trudel",
+      "Sirène", "Café Angélica", "Quincho Parrilla y Bar", "Restaurante Midbar", "O’Pasta Tra[oria",
+      "Buena Pizza Social Club", "Mais Café Bistrô e Eventos", "Mais1 Café", "Hora do Pastel",
+      "Bullé Café & Armazén", "Paraíso Bowls", "Real Fucking Burger", "Osteria del Mercato", "Vila Finamor",
+      "Platinum Sushi (Yakisoba)", "Ginkgo", "Molt Be", "Konceito Lounge", "Todo Cambia", "Trigo Pizzaria",
+      "Boom Sabor que Faz Bem", "Salvador Pontal", "Café do Bem", "Dale Burger", "Oh Bruder",
+      "Maitê Caino Doceria", "Monte Líbano", "Fogo", "Avo", "Milk Moo", "Céu Zona Sul",
+      "Parrilla Hecho a Mano", "Patio Barcelos", "Ponto Zero Bar e Cozinha", "Sabor de Luna", "Santino Gelateria",
+      "Armazém POA", "Nina Café da Casa", "Mulligan", "Salvador Gravataí", "Café Cultura", "Armazén Box 18",
+      "Ajeum Panqueca", "Sobrinho Hamburgers", "Madame Tetu", "Confeitaria Dona Inês", "Bisou", "Rincón 74",
+      "Ofertório Gastrobar", "Porto Burger", "Bibah", "Mima Focacceria", "Restaurante Naval", "Delta Brick",
+      "Los Ferreros", "Squisito Fatta a Mano", "Spoleto", "Nanica", "T.T Burguer", "Village Grill", "Da Vó",
+      "Hard Rock", "Quintanilha", "Don Zarichta", "Terra do Churrasco", "McDonald’s (último)"
+    ])];
+
+    let sorteados = JSON.parse(localStorage.getItem("sorteados")) || [];
+    let visitados = JSON.parse(localStorage.getItem("visitados")) || [];
+
+    function salvarDados() {
+      localStorage.setItem("sorteados", JSON.stringify(sorteados));
+      localStorage.setItem("visitados", JSON.stringify(visitados));
+    }
+
+    function atualizarListas() {
+      const ulRestantes = document.getElementById("restantes");
+      const ulSorteados = document.getElementById("jaSorteados");
+      const ulVisitados = document.getElementById("visitados");
+
+      ulRestantes.innerHTML = "";
+      ulSorteados.innerHTML = "";
+      ulVisitados.innerHTML = "";
+
+      const sorteadosNaoVisitados = sorteados.filter(s => !visitados.includes(s.nome)).map(s => s.nome);
+      const restantes = lista.filter(r => !visitados.includes(r) && !sorteadosNaoVisitados.includes(r));
+
+      restantes.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ulRestantes.appendChild(li);
+      });
+
+      sorteados.forEach(entry => {
+        const li = document.createElement("li");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = visitados.includes(entry.nome);
+        checkbox.onchange = () => {
+          if (checkbox.checked) {
+            if (!visitados.includes(entry.nome)) visitados.push(entry.nome);
+          } else {
+            visitados = visitados.filter(v => v !== entry.nome);
+          }
+          salvarDados();
+          atualizarListas();
+        };
+
+        const label = document.createElement("label");
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(`${entry.nome} - ${entry.data}`));
+
+        li.appendChild(label);
+        ulSorteados.appendChild(li);
+      });
+
+      visitados.forEach(nome => {
+        const li = document.createElement("li");
+        li.textContent = nome;
+        ulVisitados.appendChild(li);
+      });
+    }
+
+    function sortear() {
+      const jaSorteadosNaoVisitados = sorteados
+        .filter(s => !visitados.includes(s.nome))
+        .map(s => s.nome);
+
+      const elegiveis = lista.filter(r =>
+        !visitados.includes(r) &&
+        !jaSorteadosNaoVisitados.includes(r)
+      );
+
+      if (elegiveis.length === 0) {
+        document.getElementById("resultado").textContent = "Todos os restaurantes disponíveis já foram visitados ou estão em sorteio!";
+        return;
+      }
+
+      const indice = Math.floor(Math.random() * elegiveis.length);
+      const escolhido = elegiveis[indice];
+      const agora = new Date().toLocaleString();
+
+      sorteados.unshift({ nome: escolhido, data: agora });
+      document.getElementById("resultado").textContent = escolhido;
+      salvarDados();
+      atualizarListas();
+    }
+
+    atualizarListas();
+  </script>
+</body>
+</html>
